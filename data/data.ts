@@ -61,3 +61,14 @@ export const incorrectLoginData = [
     fullname: 'John Doe',
   },
 ]
+
+export const existingUserSignup = [
+  {
+    email: 'loginuser1@testgmail.com',
+    fullname: 'John Doe',
+  },
+  {
+    email: 'loginuser2@testgmail.com',
+    fullname: 'John Doe',
+  },
+]

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { incorrectLoginData, loginData, signUpData } from '../data/data';
-import { accessLoginSection, fillSignupFields, handleGoogleAd, homepageVisible, loggedInAs, loginAccountVisible, loginUser } from './helpers/helper';
+import { existingUserSignup, incorrectLoginData, loginData, signUpData } from '../data/data';
+import { accessLoginSection, clickSignupButton, fillExtraSignupFields, fillSignupFields, handleGoogleAd, homepageVisible, loggedInAs, loginAccountVisible, loginUser, newUserSignupVisible } from './helpers/helper';
 
 const URL = "https://www.automationexercise.com/";
 
@@ -28,14 +28,13 @@ test.describe("Sign up and Sign in test cases", () => {
         await accessLoginSection( page );
     
         //* 5. Verify 'New User Signup!' is visible
-        await expect(page.getByRole('heading', { name: 'New User Signup!' })).toBeVisible();
+        await newUserSignupVisible( page );
     
         //* 6. Enter name and email address
-        await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Name').fill( user.fullname );
-        await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').fill( user.email );
+        await fillSignupFields( page, user );
 
         //* 7. Click 'Signup' button
-        await page.getByRole('button', { name: 'Signup' }).click();
+        await clickSignupButton( page );
 
         //* 8. Verify that 'ENTER ACCOUNT INFORMATION' is visible
         await expect(page.getByText('Enter Account Information')).toBeVisible();
@@ -44,7 +43,7 @@ test.describe("Sign up and Sign in test cases", () => {
         //* 10. Select checkbox 'Sign up for our newsletter!'
         //* 11. Select checkbox 'Receive special offers from our partners!'
         //* 12. Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number
-        await fillSignupFields( page, user );
+        await fillExtraSignupFields( page, user );
 
         //* 13. Click 'Create Account button'
         await page.getByRole('button', { name: 'Create Account' }).click();
@@ -138,6 +137,33 @@ test.describe("Sign up and Sign in test cases", () => {
         await page.getByRole('link', { name: ' Logout' }).click();
         //* 10. Verify that user is navigated to login page
         await expect(page).toHaveURL(/automationexercise.com\/login/);
+      })
+    })
+  });
+
+  test.describe("Test Case 5: Register User with existing email", () => {
+    existingUserSignup.forEach( user => {
+      test(`Signing up ${user.email}`, async({ page }) => {
+        //! Test timeout set to 3 minutes
+        test.setTimeout(3 * 60 * 1000);
+        
+        //* 3. Verify that home page is visible successfully
+        await homepageVisible( page );
+        
+        //* 4. Click on 'Signup / Login' button
+        await accessLoginSection( page );
+        
+        //* 5. Verify 'New User Signup!' is visible
+        await newUserSignupVisible( page );
+        
+        //* 6. Enter name and already registered email address
+        await fillSignupFields( page, user );
+        
+        //* 7. Click 'Signup' button
+        await clickSignupButton( page );
+
+        //* 8. Verify error 'Email Address already exist!' is visible
+        await expect(page.getByText('Email Address already exist!')).toBeVisible();
       })
     })
   });

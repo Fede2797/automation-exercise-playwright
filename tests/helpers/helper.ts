@@ -19,6 +19,15 @@ export const handleGoogleAd = async( page ) => {
 }
 
 export const fillSignupFields = async( page, user ) => {
+  await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Name').fill( user.fullname );
+  await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').fill( user.email );
+}
+
+export const clickSignupButton = async( page ) => {
+  await page.getByRole('button', { name: 'Signup' }).click();
+}
+
+export const fillExtraSignupFields = async( page, user ) => {
   if ( user.sex === "male" ) {
     await page.getByLabel('Mr.').click();
   } else if ( user.sex === "female" ) {
@@ -50,4 +59,8 @@ export const loginUser = async( page, user ) => {
   await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill( user.email );
   await page.getByPlaceholder('Password').fill( user.password );
   await page.getByRole('button', { name: 'Login' }).click();
+}
+
+export const newUserSignupVisible = async( page ) => {
+  await expect(page.getByRole('heading', { name: 'New User Signup!' })).toBeVisible();
 }
