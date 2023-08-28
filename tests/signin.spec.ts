@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { existingUserSignup, incorrectLoginData, loginData, signUpData } from '../data/data';
-import { accessLoginSection, clickSignupButton, fillExtraSignupFields, fillSignupFields, handleGoogleAd, homepageVisible, loggedInAs, loginAccountVisible, loginUser, newUserSignupVisible } from './helpers/helper';
+import { accessLoginSection, clickSignupButton, fillExtraSignupFields, fillSignupFields, handleGoogleAd, homepageVisible, loggedInAs, loginAccountVisible, loginUser, newUserSignupVisible, validateLoginURL } from './helpers/helper';
 
 const URL = "https://www.automationexercise.com/";
 
@@ -136,7 +136,7 @@ test.describe("Sign up and Sign in test cases", () => {
         //* 9. Click 'Logout' button
         await page.getByRole('link', { name: ' Logout' }).click();
         //* 10. Verify that user is navigated to login page
-        await expect(page).toHaveURL(/automationexercise.com\/login/);
+        await validateLoginURL( page );
       })
     })
   });

@@ -64,3 +64,11 @@ export const loginUser = async( page, user ) => {
 export const newUserSignupVisible = async( page ) => {
   await expect(page.getByRole('heading', { name: 'New User Signup!' })).toBeVisible();
 }
+
+export const validateLoginURL = async( page ) => {
+  await expect(page).toHaveURL(/automationexercise.com\/login/);
+}
+
+export const validateHomepageURL = async( page ) => {
+  await expect(page).toHaveURL("https://www.automationexercise.com/");
+}

@@ -72,3 +72,14 @@ export const existingUserSignup = [
     fullname: 'John Doe',
   },
 ]
+
+export const userContactData =[
+  {
+    fullname: 'John Doe',
+    email: 'loginuser2@testgmail.com',
+    subject: 'This is an important email',
+    message: 'I\'m reaching to you for an important matter. I want to know if we can schedule a meeting for tomorrow afternoon. Tell me if it\'s ok with u. All the best, Jogn Doe.',
+    imagePath: 'data\\car.jpg',
+    imageName: 'car.jpg',
+  }
+]
