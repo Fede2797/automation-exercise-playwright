@@ -1,8 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { existingUserSignup, incorrectLoginData, loginData, signUpData } from '../data/data';
-import { accessLoginSection, clickSignupButton, fillExtraSignupFields, fillSignupFields, handleGoogleAd, homepageVisible, loggedInAs, loginAccountVisible, loginUser, newUserSignupVisible, validateLoginURL } from './helpers/helper';
-
-const URL = "https://www.automationexercise.com/";
+import { URL, accessLoginSection, clickSignupButton, fillExtraSignupFields, fillSignupFields, handleGoogleAd, homepageVisible, loggedInAs, loginAccountVisible, loginUser, newUserSignupVisible, validateLoginURL } from './helpers/helper';
 
 test.beforeEach(async({ page }) => {
   await page.goto(URL);

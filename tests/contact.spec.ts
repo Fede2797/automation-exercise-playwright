@@ -1,15 +1,13 @@
 import { test, expect } from '@playwright/test';
-import { handleGoogleAd, homepageVisible, validateHomepageURL } from './helpers/helper';
+import { URL, handleGoogleAd, homepageVisible, validateHomepageURL } from './helpers/helper';
 import { userContactData } from '../data/data';
-
-const URL = "https://www.automationexercise.com/";
 
 test.beforeEach(async({ page }) => {
   await page.goto(URL);
 });
 
 test.describe("Contact Us section test cases", () => {
-  test.describe.only("Test Case 6: Contact Us Form", () => {
+  test.describe("Test Case 6: Contact Us Form", () => {
     userContactData.map( user => {
       test("Test Case 6: Contact Us Form", async({ page }) => {
 

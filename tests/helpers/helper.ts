@@ -1,5 +1,7 @@
 import { expect } from "@playwright/test";
 
+export const URL = "https://www.automationexercise.com/";
+
 export const homepageVisible = async( page ) => {
   await expect(page.getByRole('heading', { name: 'Features Items' })).toBeVisible();
 }
@@ -15,6 +17,21 @@ export const loggedInAs = async( page, fullname ) => {
 export const handleGoogleAd = async( page ) => {
   if ( await page.url().includes("google_vignette") ){
     await page.getByLabel('Close ad').click();
+  }
+}
+
+export const handleMultipleGoogleAds = async( page ) => {
+  if ( await page.url().includes("google_vignette") ){
+    
+    if ( await page.frameLocator("#aswift_4").frameLocator("#ad_iframe").getByText('Close').isVisible({timeout : 5000}) ) {
+      const firstFrame = await page.frameLocator("#aswift_4");
+      await firstFrame.frameLocator("#ad_iframe").getByText('Close').click();
+    } else if ( await page.frameLocator("#aswift_5").frameLocator("#ad_iframe").getByText('Close').isVisible({timeout : 5000}) ) {
+      const firstFrame = await page.frameLocator("#aswift_5");
+      await firstFrame.frameLocator("#ad_iframe").getByText('Close').click();
+    } else {
+      await page.getByLabel('Close ad').click();
+    }
   }
 }
 
