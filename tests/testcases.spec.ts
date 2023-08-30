@@ -5,7 +5,7 @@ test.beforeEach(async({ page }) => {
   await page.goto(URL);
 });
 
-test.only("Test Case 7: Verify Test Cases Page", async({ page }) => {
+test("Test Case 7: Verify Test Cases Page", async({ page }) => {
 
   // await page.route("**/*", (request) => {
   //   request.request().url().startsWith("https://googleads.")
