@@ -83,3 +83,8 @@ export const userContactData =[
     imageName: 'car.jpg',
   }
 ]
+
+export const products = [
+  "jeans",
+  "white",
+]
