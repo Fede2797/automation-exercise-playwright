@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { URL, handleMultipleGoogleAds, homepageVisible } from './helpers/helper';
+import { URL, homepageVisible } from './helpers/helper';
 import { enterProductsPage } from './helpers/products-helper';
 import { products } from '../data/data';
 
@@ -24,7 +24,7 @@ test.describe("Products section tests", () => {
     await expect(page.getByText('Brand: Polo')).toBeVisible();
   })
 
-  test.describe.only("Test Case 9: Search Product", () => {
+  test.describe("Test Case 9: Search Product", () => {
     products.map( product => {
       test(`Searching product ${product}`, async({ page }) => {
         await homepageVisible( page );
@@ -37,5 +37,5 @@ test.describe("Products section tests", () => {
         await expect(totalSearch).toBe(productSearch);
       })
     })
-  })
+  });
 })

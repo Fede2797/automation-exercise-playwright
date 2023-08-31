@@ -88,3 +88,9 @@ export const products = [
   "jeans",
   "white",
 ]
+
+export const emailSubscriptions = [
+  "thisisanemail@gmail.com",
+  "microsoftemail@outlook.com",
+  "yahoooo@yahoo.com",
+]
