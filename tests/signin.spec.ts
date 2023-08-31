@@ -6,12 +6,6 @@ test.beforeEach(async({ page }) => {
   await page.goto(URL);
 });
 
-export const example = async( page ) => {
-  
-}
-
-
-
 test.describe("Sign up and Sign in test cases", () => {
   test.describe("Test Case 1: Register User", () => {
     signUpData.forEach( user => {

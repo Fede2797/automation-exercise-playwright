@@ -27,7 +27,7 @@ test.describe("Subscription tests", () => {
     });
   });
 
-  test.describe.only("Test Case 11: Verify Subscription in Cart page", () => {
+  test.describe("Test Case 11: Verify Subscription in Cart page", () => {
     emailSubscriptions.map( email => {
       test(`Subscribing user with email: ${email}`, async({ page }) => {
         await homepageVisible( page );

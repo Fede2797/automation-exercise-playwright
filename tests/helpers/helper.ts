@@ -22,15 +22,18 @@ export const handleGoogleAd = async( page ) => {
 
 export const handleMultipleGoogleAds = async( page ) => {
   if ( await page.url().includes("google_vignette") ){
-    
-    if ( await page.frameLocator("#aswift_4").frameLocator("#ad_iframe").getByText('Close').isVisible({timeout : 5000}) ) {
-      const firstFrame = await page.frameLocator("#aswift_4");
-      await firstFrame.frameLocator("#ad_iframe").getByText('Close').click();
-    } else if ( await page.frameLocator("#aswift_5").frameLocator("#ad_iframe").getByText('Close').isVisible({timeout : 5000}) ) {
-      const firstFrame = await page.frameLocator("#aswift_5");
-      await firstFrame.frameLocator("#ad_iframe").getByText('Close').click();
-    } else {
-      await page.getByLabel('Close ad').click();
+    for ( let i = 0; i <= 8; i++ ) {
+      if ( await page.frameLocator(`#aswift_${i}`).frameLocator("#ad_iframe").getByText('Close').isVisible({timeout : 5000}) ) {
+        const firstFrame = await page.frameLocator(`#aswift_${i}`);
+        await firstFrame.frameLocator("#ad_iframe").getByText('Close').click();
+        return ;
+      }
+    }
+    for ( let i = 0; i <= 8; i++ ) {
+      if ( await page.frameLocator(`#aswift_${i}`).locator("#dismiss-button").first().isVisible({timeout : 5000}) ) {
+        await page.frameLocator(`#aswift_${i}`).locator("#dismiss-button").first().click();
+        return ;
+      }
     }
   }
 }
