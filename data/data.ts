@@ -1,7 +1,7 @@
 
 export const signUpData = [
   {
-    email: 'signupuser1@testgmail.com',
+    email: 'signupuser3@testgmail.com',
     password: 'ThisIsAPassword123',
     fullname: 'John Doe',
     firstname: "John",
@@ -93,4 +93,13 @@ export const emailSubscriptions = [
   "thisisanemail@gmail.com",
   "microsoftemail@outlook.com",
   "yahoooo@yahoo.com",
+]
+
+export const creaditCardData = [
+  {
+    "number" : "4554 7654 8439 5403",
+    "cvc" : "767",
+    "month" : "05",
+    "year" : "2025",
+  }
 ]

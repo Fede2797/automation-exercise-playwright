@@ -43,7 +43,7 @@ test.describe("Testing Cart functionallity", () => {
     }
   })
 
-  test.only("Test Case 13: Verify Product quantity in Cart", async({ page }) => {
+  test("Test Case 13: Verify Product quantity in Cart", async({ page }) => {
     const quantity = 4;
 
     await homepageVisible( page );

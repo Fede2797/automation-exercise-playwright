@@ -92,3 +92,7 @@ export const validateLoginURL = async( page ) => {
 export const validateHomepageURL = async( page ) => {
   await expect(page).toHaveURL("https://www.automationexercise.com/");
 }
+
+export function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
