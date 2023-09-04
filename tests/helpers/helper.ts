@@ -1,4 +1,5 @@
 import { expect } from "@playwright/test";
+import { creaditCardData, signUpData } from "../../data/data";
 
 export const URL = "https://www.automationexercise.com/";
 
@@ -101,4 +102,22 @@ export const deleteAccount = async( page ) => {
   await page.getByRole('link', { name: 'Delete Account' }).click();
   await expect( page.getByText('Account Deleted!') ).toBeVisible();
   await page.getByRole('link', { name: 'Continue' }).click();
+}
+
+export const createRandomUser = async( page ) => {
+  const user = signUpData[0];
+  let auxMail = user.firstname + user.lastname + getRandomInt(999) + `@totallytruemail${getRandomInt(999)}.com`;
+  user.email = auxMail;
+  
+  await homepageVisible( page );
+  await accessLoginSection( page );
+  await fillSignupFields( page, user );
+  await clickSignupButton( page );
+  await fillExtraSignupFields( page, user );
+  await page.getByRole('button', { name: 'Create Account' }).click();
+  await expect(page.getByText('Account Created!')).toBeVisible();
+  await page.getByRole('link', { name: 'Continue' }).click();
+  await loggedInAs( page, user.fullname );
+
+  return user;
 }
