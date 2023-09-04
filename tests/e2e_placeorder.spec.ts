@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import { URL, accessLoginSection, clickSignupButton, createRandomUser, deleteAccount, fillExtraSignupFields, fillSignupFields, getRandomInt, handleMultipleGoogleAds, homepageVisible, loggedInAs, loginUser } from "./helpers/helper";
 import { creaditCardData, signUpData } from "../data/data";
 import { addProductToCart, continueShopping, fillCreditCardData, goToCartSection, proceedToCheckout, validateAddressDetails, validateProductOnReviewOrder, viewCart } from "./helpers/placeorder-helper";
+import { cartVisible } from "./helpers/cart-helper";
 
 test.beforeEach( async({ page }) => {
   await page.goto(URL);
@@ -25,7 +26,7 @@ test.describe("Placing an order end to end tests", () => {
     await continueShopping( page );
     await addProductToCart( page, 2 );
     await viewCart( page );
-    await expect(page).toHaveURL(/view_cart/);
+    await cartVisible( page );
     await proceedToCheckout( page );
     await page.getByRole('link', { name: 'Register / Login' }).click();
     await fillSignupFields( page, user );
@@ -65,7 +66,7 @@ test.describe("Placing an order end to end tests", () => {
     await addProductToCart( page, 2 );
     await continueShopping( page );
     await goToCartSection( page );
-    await expect(page).toHaveURL(/view_cart/);
+    await cartVisible( page );
     await proceedToCheckout( page );
     await validateAddressDetails( page, user );
     await validateProductOnReviewOrder({ page, productNumber: "1", productName: nameFirstProduct,  productPrice: priceFirstProduct,  quantity: 1});
@@ -81,7 +82,7 @@ test.describe("Placing an order end to end tests", () => {
     await deleteAccount( page );
   });
 
-  test.only("Test Case 16: Place Order: Login before Checkout", async({ page }) => {
+  test("Test Case 16: Place Order: Login before Checkout", async({ page }) => {
     const creditCard = creaditCardData[0];
     
     const user = await createRandomUser( page );
@@ -99,7 +100,7 @@ test.describe("Placing an order end to end tests", () => {
     await addProductToCart( page, 2 );
     await continueShopping( page );
     await goToCartSection( page );
-    await expect(page).toHaveURL(/view_cart/);
+    await cartVisible( page );
     await proceedToCheckout( page );
     await validateAddressDetails( page, user );
     await validateProductOnReviewOrder({ page, productNumber: "1", productName: nameFirstProduct,  productPrice: priceFirstProduct,  quantity: 1});

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { URL, homepageVisible } from './helpers/helper';
+import { URL, handleMultipleGoogleAds, homepageVisible } from './helpers/helper';
 import { enterProductsPage } from './helpers/products-helper';
 import { products } from '../data/data';
 
@@ -38,4 +38,20 @@ test.describe("Products section tests", () => {
       })
     })
   });
+
+  test.only("Test Case 18: View Category Products", async({ page }) => {   
+    const category = "Dress";     
+    await homepageVisible( page );
+    await expect(page.locator(".category-products").getByText("Women", { exact: true })).toBeVisible();
+    await expect(page.locator(".category-products").getByText("Men", { exact: true }))  .toBeVisible();
+    await expect(page.locator(".category-products").getByText("Kids", { exact: true })) .toBeVisible();
+    await page.locator(".category-products").getByText("Women", { exact: true }).click();
+    await page.locator(".category-products").locator("#Women").getByText("Dress", { exact: true }).click();
+    await handleMultipleGoogleAds( page );
+    await expect(page.getByRole('heading', { name: `Women - ${category} Products` })).toBeVisible();
+    await page.locator(".category-products").getByText("Men", { exact: true }).click();
+    await page.locator(".category-products").getByRole('link', { name: 'Jeans' }).click();
+    await handleMultipleGoogleAds( page );
+    await expect(page.getByRole('heading', { name: 'Men - Jeans Products' })).toBeVisible();
+  })
 })
