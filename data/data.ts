@@ -103,3 +103,11 @@ export const creaditCardData = [
     "year" : "2025",
   }
 ]
+
+export const searchCartLoginData = [
+  {
+    email: 'searchCartLoginData1@testgmail.com',
+    password: 'ThisIsAPassword123',
+    fullname: 'John Doe',
+  },
+]

@@ -121,3 +121,7 @@ export const createRandomUser = async( page ) => {
 
   return user;
 }
+
+export const accessCart = async( page ) => {
+  await page.getByRole('link', { name: 'Cart' }).click();
+}

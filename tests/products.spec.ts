@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { URL, handleMultipleGoogleAds, homepageVisible } from './helpers/helper';
+import { URL, getRandomInt, handleMultipleGoogleAds, homepageVisible } from './helpers/helper';
 import { enterProductsPage } from './helpers/products-helper';
 import { products } from '../data/data';
 
@@ -30,7 +30,7 @@ test.describe("Products section tests", () => {
         await homepageVisible( page );
         await enterProductsPage( page );
         await page.getByPlaceholder('Search Product').fill( product );
-        await page.getByRole('button', { name: '' }).click();
+        await page.locator("#submit_search");
         await expect(page.getByRole('heading', { name: 'Searched Products' })).toBeVisible();
         const totalSearch = await page.locator('.single-products').count();
         const productSearch = await page.locator('.single-products').getByText(product).count() / 2;
@@ -71,4 +71,21 @@ test.describe("Products section tests", () => {
     await page.locator(".brands_products > .brands-name > ul > li").nth(0).click();
     await expect(page.getByRole('heading', { name: `Brand - ${secondBrandSelected} Products` })).toBeVisible();
   });
+
+  test.only("Test Case 21: Add review on product", async({ page }) => {
+    await homepageVisible( page );
+    await enterProductsPage( page );
+    const numberOfProducts = await page.locator(".single-products").count();
+    const productNumber = getRandomInt( numberOfProducts );
+    await page.locator(".product-image-wrapper").nth( productNumber ).getByText("View Product").click();
+    await handleMultipleGoogleAds( page );
+    await expect(page.getByRole('link', { name: 'Write Your Review' })).toBeVisible();
+
+    await page.getByPlaceholder('Your Name').fill("John Doe");
+    await page.getByPlaceholder('Email Address', { exact: true }).fill("loginuser1@testgmail.com");
+    await page.getByPlaceholder('Add Review Here!').fill("This is a review for this product. It's an excellent product, totally would buy it again");
+    await page.getByRole('button', { name: 'Submit' }).click();
+
+    await expect(page.getByText("Thank you for your review.")).toBeVisible();
+  })
 });
