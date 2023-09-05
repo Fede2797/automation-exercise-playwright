@@ -39,7 +39,7 @@ test.describe("Products section tests", () => {
     })
   });
 
-  test.only("Test Case 18: View Category Products", async({ page }) => {   
+  test("Test Case 18: View Category Products", async({ page }) => {   
     const category = "Dress";     
     await homepageVisible( page );
     await expect(page.locator(".category-products").getByText("Women", { exact: true })).toBeVisible();
@@ -53,5 +53,22 @@ test.describe("Products section tests", () => {
     await page.locator(".category-products").getByRole('link', { name: 'Jeans' }).click();
     await handleMultipleGoogleAds( page );
     await expect(page.getByRole('heading', { name: 'Men - Jeans Products' })).toBeVisible();
-  })
-})
+  });
+
+  test("Test Case 19: View & Cart Brand Products", async({ page }) => {
+    await homepageVisible( page );
+    await enterProductsPage( page );
+
+    await expect(page.locator(".brands_products")).toBeVisible();
+
+    let brandSelected = await page.locator(".brands_products > .brands-name > ul > li").nth(1).textContent();
+    ( brandSelected ) && (brandSelected = brandSelected.replace(/ *\([^)]*\) */g, ""));
+    await page.locator(".brands_products > .brands-name > ul > li").nth(1).click();
+    await expect(page.getByRole('heading', { name: `Brand - ${brandSelected} Products` })).toBeVisible();
+    
+    let secondBrandSelected = await page.locator(".brands_products > .brands-name > ul > li").nth(0).textContent();
+    ( secondBrandSelected ) && (secondBrandSelected = secondBrandSelected.replace(/ *\([^)]*\) */g, ""));
+    await page.locator(".brands_products > .brands-name > ul > li").nth(0).click();
+    await expect(page.getByRole('heading', { name: `Brand - ${secondBrandSelected} Products` })).toBeVisible();
+  });
+});
