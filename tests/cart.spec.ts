@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { URL, handleMultipleGoogleAds, homepageVisible } from "./helpers/helper";
+import { URL, handleMultipleGoogleAds, homepageVisible, scrollToBottom } from "./helpers/helper";
 import { enterProductsPage } from "./helpers/products-helper";
 import { addProductToCart, continueShopping, goToCartSection, validateProductOnReviewOrder, viewCart } from "./helpers/placeorder-helper";
 import { cartVisible, removeFromCart } from "./helpers/cart-helper";
@@ -53,5 +53,16 @@ test.describe("Testing Cart functionallity", () => {
     await cartVisible( page );
     await removeFromCart( page, 0 );
     await expect(await page.getByText('Cart is empty! Click here to buy products.')).toBeVisible();
+  });
+
+  test.only("Test Case 22: Add to cart from Recommended items", async({ page }) => {
+    await homepageVisible( page );
+    await scrollToBottom( page );
+    await expect(page.getByRole('heading', { name: 'recommended items' })).toBeVisible();
+    
+    const productName = await page.locator('#recommended-item-carousel').locator(".active").locator(".single-products").first().locator("p").textContent();
+    await page.locator('#recommended-item-carousel').locator(".active").locator(".single-products").first().getByText("Add to cart").click();
+    await page.getByRole('link', { name: 'View Cart' }).click();
+    await expect( await page.locator("tbody > tr:nth-child(1) > td:nth-child(2) > h4").textContent() ).toBe(productName);
   });
 })

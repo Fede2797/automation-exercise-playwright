@@ -125,3 +125,11 @@ export const createRandomUser = async( page ) => {
 export const accessCart = async( page ) => {
   await page.getByRole('link', { name: 'Cart' }).click();
 }
+
+export const scrollToBottom = async( page ) => {
+  await page.evaluate(async () => {
+    for (let i = 0; i < document.body.scrollHeight; i += 100) {
+      window.scrollTo(0, i);
+    }
+  });
+}

@@ -72,7 +72,7 @@ test.describe("Products section tests", () => {
     await expect(page.getByRole('heading', { name: `Brand - ${secondBrandSelected} Products` })).toBeVisible();
   });
 
-  test.only("Test Case 21: Add review on product", async({ page }) => {
+  test("Test Case 21: Add review on product", async({ page }) => {
     await homepageVisible( page );
     await enterProductsPage( page );
     const numberOfProducts = await page.locator(".single-products").count();
@@ -87,5 +87,5 @@ test.describe("Products section tests", () => {
     await page.getByRole('button', { name: 'Submit' }).click();
 
     await expect(page.getByText("Thank you for your review.")).toBeVisible();
-  })
+  });
 });
