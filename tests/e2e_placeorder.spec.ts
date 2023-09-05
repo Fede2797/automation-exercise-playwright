@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { URL, accessLoginSection, clickSignupButton, createRandomUser, deleteAccount, fillExtraSignupFields, fillSignupFields, getRandomInt, handleMultipleGoogleAds, homepageVisible, loggedInAs, loginUser } from "./helpers/helper";
+import { URL, clickSignupButton, createRandomUser, deleteAccount, fillExtraSignupFields, fillSignupFields, getRandomInt, handleMultipleGoogleAds, homepageVisible, loggedInAs, loginUser } from "./helpers/helper";
 import { creaditCardData, signUpData } from "../data/data";
-import { addProductToCart, continueShopping, fillCreditCardData, goToCartSection, proceedToCheckout, validateAddressDetails, validateProductOnReviewOrder, viewCart } from "./helpers/placeorder-helper";
+import { addProductToCart, continueShopping, fillCreditCardData, goToCartSection, proceedToCheckout, validateDeliveryAddress, validateBillingAddress, validateProductOnReviewOrder, viewCart, placeDescription, placeOrder, orderConfirmed } from "./helpers/placeorder-helper";
 import { cartVisible } from "./helpers/cart-helper";
 
 test.beforeEach( async({ page }) => {
@@ -38,15 +38,16 @@ test.describe("Placing an order end to end tests", () => {
     await loggedInAs( page, user.fullname );
     await goToCartSection( page );
     await proceedToCheckout( page );
-    await validateAddressDetails( page, user );
+    await validateDeliveryAddress( page, user );
     await validateProductOnReviewOrder({ page, productNumber: "1", productName: nameFirstProduct,  productPrice: priceFirstProduct,  quantity: 1});
     await validateProductOnReviewOrder({ page, productNumber: "3", productName: nameSecondProduct, productPrice: priceSecondProduct, quantity: 1});
-    await page.locator('textarea[name="message"]').fill("This is a sample description of an order");
-    await page.getByRole('link', { name: 'Place Order' }).click();
+    await placeDescription( page, "This is a sample description of an order" );
+
+    await placeOrder( page );
 
     await fillCreditCardData({ page, user, creditCard });
 
-    await expect(await page.getByText("Congratulations! Your order has been confirmed!")).toBeVisible();
+    await orderConfirmed( page );
     
     await deleteAccount( page );
   });
@@ -68,16 +69,17 @@ test.describe("Placing an order end to end tests", () => {
     await goToCartSection( page );
     await cartVisible( page );
     await proceedToCheckout( page );
-    await validateAddressDetails( page, user );
+    await validateDeliveryAddress( page, user );
     await validateProductOnReviewOrder({ page, productNumber: "1", productName: nameFirstProduct,  productPrice: priceFirstProduct,  quantity: 1});
     await validateProductOnReviewOrder({ page, productNumber: "3", productName: nameSecondProduct, productPrice: priceSecondProduct, quantity: 1});
-    await page.locator('textarea[name="message"]').fill("This is a sample description of an order");
-    await page.getByRole('link', { name: 'Place Order' }).click();
+    await placeDescription( page, "This is a sample description of an order" );
+
+    await placeOrder( page );
     
     await handleMultipleGoogleAds( page );
     await fillCreditCardData({ page, user, creditCard });
 
-    await expect(await page.getByText("Congratulations! Your order has been confirmed!")).toBeVisible();
+    await orderConfirmed( page );
     
     await deleteAccount( page );
   });
@@ -102,17 +104,84 @@ test.describe("Placing an order end to end tests", () => {
     await goToCartSection( page );
     await cartVisible( page );
     await proceedToCheckout( page );
-    await validateAddressDetails( page, user );
+    await validateDeliveryAddress( page, user );
     await validateProductOnReviewOrder({ page, productNumber: "1", productName: nameFirstProduct,  productPrice: priceFirstProduct,  quantity: 1});
     await validateProductOnReviewOrder({ page, productNumber: "3", productName: nameSecondProduct, productPrice: priceSecondProduct, quantity: 1});
-    await page.locator('textarea[name="message"]').fill("This is a sample description of an order");
-    await page.getByRole('link', { name: 'Place Order' }).click();
+    await placeDescription( page, "This is a sample description of an order" );
+
+    await placeOrder( page );
     
     await handleMultipleGoogleAds( page );
     await fillCreditCardData({ page, user, creditCard });
-
-    await expect(await page.getByText("Congratulations! Your order has been confirmed!")).toBeVisible();
+    await orderConfirmed( page );
     
     await deleteAccount( page );
   });
+
 });
+
+test.describe("Address details in checkout page", () => {
+  test("Test Case 23: Verify address details in checkout page", async({ page }) => {
+    await homepageVisible( page );
+    const user = await createRandomUser( page );
+    await addProductToCart( page, 0 );
+    await continueShopping( page );
+    await goToCartSection( page );
+    await cartVisible( page );
+    await proceedToCheckout( page );
+    await validateDeliveryAddress( page, user );
+    await validateBillingAddress( page, user );
+    await deleteAccount( page );
+  });
+})
+
+test.describe("Download invoice", () => {
+  test.only("Test Case 24: Download Invoice after purchase order", async({ page }) => {
+    //! Test timeout set to 3 minutes
+    test.setTimeout(3 * 60 * 1000);
+
+    const creditCard = creaditCardData[0];
+    const user = signUpData[0];
+    let auxMail = user.firstname + user.lastname + getRandomInt(999) + `@totallytruemail${getRandomInt(999)}.com`;
+    user.email = auxMail;
+
+    await homepageVisible( page );
+    const nameFirstProduct    = await page.locator("xpath=/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]/p").textContent();
+    const priceFirstProduct   = await page.locator("xpath=/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]/h2").textContent();
+    await addProductToCart( page, 0 );
+    await continueShopping( page );
+    await goToCartSection( page );
+    await cartVisible( page );
+    await proceedToCheckout( page );
+    await page.getByRole('link', { name: 'Register / Login' }).click();
+    
+    await fillSignupFields( page, user );
+    await clickSignupButton( page );
+    await fillExtraSignupFields( page, user );
+    await page.getByRole('button', { name: 'Create Account' }).click();
+    await expect(page.getByText('Account Created!')).toBeVisible();
+    await page.getByRole('link', { name: 'Continue' }).click();
+    await loggedInAs( page, user.fullname );
+    
+    await goToCartSection( page );
+    await proceedToCheckout( page );
+    await validateDeliveryAddress( page, user );
+    await validateProductOnReviewOrder({ page, productNumber: "1", productName: nameFirstProduct,  productPrice: priceFirstProduct,  quantity: 1});
+    await placeDescription( page, "This is a sample description of an order" );
+    await placeOrder( page );
+    
+    await handleMultipleGoogleAds( page );
+    await fillCreditCardData({ page, user, creditCard });
+    await orderConfirmed( page );
+    
+    // Validate download
+    const download = await Promise.all([
+      page.waitForEvent("download"),
+      page.getByRole('link', { name: 'Download Invoice' }).click(),
+    ]);
+    await expect(download[0].path).toBeTruthy();
+
+    await page.getByRole('link', { name: 'Continue' }).click();
+    await deleteAccount( page );
+  })
+})

@@ -55,7 +55,7 @@ test.describe("Testing Cart functionallity", () => {
     await expect(await page.getByText('Cart is empty! Click here to buy products.')).toBeVisible();
   });
 
-  test.only("Test Case 22: Add to cart from Recommended items", async({ page }) => {
+  test("Test Case 22: Add to cart from Recommended items", async({ page }) => {
     await homepageVisible( page );
     await scrollToBottom( page );
     await expect(page.getByRole('heading', { name: 'recommended items' })).toBeVisible();
