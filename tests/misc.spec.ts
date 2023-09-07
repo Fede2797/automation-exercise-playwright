@@ -10,8 +10,12 @@ test.beforeEach( async({ page }) => {
 
 test.describe("Address details in checkout page", () => {
   test("Test Case 23: Verify address details in checkout page", async({ page }) => {
+    //! Test timeout set to 3 minutes
+    test.setTimeout(3 * 60 * 1000);
+
     await homepageVisible( page );
     const user = await createRandomUser( page );
+    await handleMultipleGoogleAds( page );
     await addProductToCart( page, 0 );
     await continueShopping( page );
     await goToCartSection( page );

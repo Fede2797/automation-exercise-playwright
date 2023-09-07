@@ -12,7 +12,6 @@ test.describe("Subscription tests", () => {
       test(`Subscribing user with email: ${email}`, async({ page }) => {
         await homepageVisible( page );
 
-        //? Scrolls smoothly to the footer
         await scrollToBottom( page );
 
         await expect(page.getByRole('heading', { name: 'Subscription' })).toBeVisible();
@@ -28,12 +27,8 @@ test.describe("Subscription tests", () => {
       test(`Subscribing user with email: ${email}`, async({ page }) => {
         await homepageVisible( page );
         await page.getByRole('link', { name: 'Cart' }).click();
-        //? Scrolls smoothly to the footer
-        await page.evaluate(async () => {
-          for (let i = 0; i < document.body.scrollHeight; i += 100) {
-            window.scrollTo(0, i);
-          }
-        });
+
+        await scrollToBottom( page );
 
         await expect(page.getByRole('heading', { name: 'Subscription' })).toBeVisible();
         await page.getByPlaceholder('Your email address').fill(email);

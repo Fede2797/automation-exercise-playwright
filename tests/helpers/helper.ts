@@ -100,6 +100,7 @@ export function getRandomInt(max) {
 
 export const deleteAccount = async( page ) => {
   await page.getByRole('link', { name: 'Delete Account' }).click();
+  await handleMultipleGoogleAds( page );
   await expect( page.getByText('Account Deleted!') ).toBeVisible();
   await page.getByRole('link', { name: 'Continue' }).click();
 }
