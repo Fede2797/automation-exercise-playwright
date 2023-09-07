@@ -127,9 +127,14 @@ export const accessCart = async( page ) => {
 }
 
 export const scrollToBottom = async( page ) => {
-  await page.evaluate(async () => {
-    for (let i = 0; i < document.body.scrollHeight; i += 100) {
-      window.scrollTo(0, i);
-    }
-  });
+  // await page.evaluate(async () => {
+  //   for (let i = 0; i < document.body.scrollHeight; i += 100) {
+  //     window.scrollTo(0, i);
+  //   }
+  // });
+  await page.mouse.wheel(0,10000);
+}
+
+export const scrollToTop = async( page ) => {
+  await page.mouse.wheel(0,-10000);
 }

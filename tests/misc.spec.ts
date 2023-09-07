@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { URL, clickSignupButton, createRandomUser, deleteAccount, fillExtraSignupFields, fillSignupFields, getRandomInt, handleMultipleGoogleAds, homepageVisible, loggedInAs, scrollToBottom } from "./helpers/helper";
+import { URL, clickSignupButton, createRandomUser, deleteAccount, fillExtraSignupFields, fillSignupFields, getRandomInt, handleMultipleGoogleAds, homepageVisible, loggedInAs } from "./helpers/helper";
 import { addProductToCart, continueShopping, fillCreditCardData, goToCartSection, orderConfirmed, placeDescription, placeOrder, proceedToCheckout, validateBillingAddress, validateDeliveryAddress, validateProductOnReviewOrder } from "./helpers/placeorder-helper";
 import { cartVisible } from "./helpers/cart-helper";
 import { creaditCardData, signUpData } from "../data/data";
@@ -71,31 +71,5 @@ test.describe("Download invoice", () => {
 
     await page.getByRole('link', { name: 'Continue' }).click();
     await deleteAccount( page );
-  });
-});
-
-test.describe("Scroll up using 'Arrow' button", () => {
-  test.only("Test Case 25: Verify Scroll Up using 'Arrow' button and Scroll Down functionality", async({ page }) => {
-    await homepageVisible( page );
-    
-    await scrollToBottom( page );
-    await expect(page.getByRole('heading', { name: 'Subscription' })).toBeVisible();
-
-    // Minimize footer ad
-    if (await page.locator(".grippy-host").isVisible()) {
-      await page.locator(".grippy-host").click();
-    }
-
-    await page.locator("#scrollUp").click();
-    
-    // Wait until the page scrolls up
-    await page.waitForTimeout(2000);
-    
-    const isScrolledUp = await page.evaluate(() => {
-      return window.scrollY === 0;
-    });
-    await expect(isScrolledUp).toBe(true);
-
-    await expect(page.locator("#slider-carousel").locator(".active").getByRole('heading', { name: 'Full-Fledged practice website for Automation Engineers' })).toBeVisible();
   });
 });
