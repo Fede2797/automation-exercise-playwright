@@ -9,8 +9,10 @@ test.beforeEach( async({ page }) => {
 });
 
 test.describe("Placing an order end to end tests", () => {
-  test("Test Case 14: Place Order: Register while Checkout", async({ page }) => {
+  //! Test timeout set to 3 minutes
+  test.setTimeout(3 * 60 * 1000);
 
+  test("Test Case 14: Place Order: Register while Checkout", async({ page }) => {
     const user = signUpData[0];
     let auxMail = user.firstname + user.lastname + getRandomInt(999) + `@totallytruemail${getRandomInt(999)}.com`;
     user.email = auxMail;
@@ -45,6 +47,7 @@ test.describe("Placing an order end to end tests", () => {
 
     await placeOrder( page );
 
+    await handleMultipleGoogleAds( page );
     await fillCreditCardData({ page, user, creditCard });
 
     await orderConfirmed( page );
@@ -53,7 +56,6 @@ test.describe("Placing an order end to end tests", () => {
   });
 
   test("Test Case 15: Place Order: Register before Checkout", async({ page }) => {
-
     const creditCard = creaditCardData[0];
 
     const user = await createRandomUser( page );

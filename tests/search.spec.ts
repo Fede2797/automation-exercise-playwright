@@ -13,7 +13,7 @@ test.describe("Tests related with the search of products", () => {
   test("Test Case 20: Search Products and Verify Cart After Login", async({ page }) => {
     const search = "Green";
     const products: { productName: string }[] = [];
-    const user = searchCartLoginData[1];
+    const user = searchCartLoginData[0];
 
     await homepageVisible( page );
     await enterProductsPage( page );
