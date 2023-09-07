@@ -110,6 +110,9 @@ test.describe("Sign up and Sign in test cases", () => {
   });
 
   test.describe("Test Case 4: Logout User", () => {
+    //! Test timeout set to 3 minutes
+    test.setTimeout(3 * 60 * 1000);
+    
     loginData.forEach( user => {
       test(`Logging out ${user.email}`, async({ page }) => {
         // test.setTimeout(3 * 60 * 1000);

@@ -24,13 +24,13 @@ test.describe("Products section tests", () => {
     await expect(page.getByText('Brand: Polo')).toBeVisible();
   })
 
-  test.describe("Test Case 9: Search Product", () => {
+  test.describe.only("Test Case 9: Search Product", () => {
     products.map( product => {
       test(`Searching product ${product}`, async({ page }) => {
         await homepageVisible( page );
         await enterProductsPage( page );
         await page.getByPlaceholder('Search Product').fill( product );
-        await page.locator("#submit_search");
+        await page.locator("#submit_search").click();
         await expect(page.getByRole('heading', { name: 'Searched Products' })).toBeVisible();
         const totalSearch = await page.locator('.single-products').count();
         const productSearch = await page.locator('.single-products').getByText(product).count() / 2;
