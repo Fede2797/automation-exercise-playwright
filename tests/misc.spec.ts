@@ -21,7 +21,7 @@ test.describe("Address details in checkout page", () => {
     await validateBillingAddress( page, user );
     await deleteAccount( page );
   });
-})
+});
 
 test.describe("Download invoice", () => {
   test("Test Case 24: Download Invoice after purchase order", async({ page }) => {
@@ -71,8 +71,8 @@ test.describe("Download invoice", () => {
 
     await page.getByRole('link', { name: 'Continue' }).click();
     await deleteAccount( page );
-  })
-})
+  });
+});
 
 test.describe("Scroll up using 'Arrow' button", () => {
   test.only("Test Case 25: Verify Scroll Up using 'Arrow' button and Scroll Down functionality", async({ page }) => {
@@ -81,8 +81,11 @@ test.describe("Scroll up using 'Arrow' button", () => {
     await scrollToBottom( page );
     await expect(page.getByRole('heading', { name: 'Subscription' })).toBeVisible();
 
-    // Minimize ad
-    await page.locator(".grippy-host").click();
+    // Minimize footer ad
+    if (await page.locator(".grippy-host").isVisible()) {
+      await page.locator(".grippy-host").click();
+    }
+
     await page.locator("#scrollUp").click();
     
     // Wait until the page scrolls up
@@ -93,6 +96,6 @@ test.describe("Scroll up using 'Arrow' button", () => {
     });
     await expect(isScrolledUp).toBe(true);
 
-    await expect(page.getByRole('heading', { name: 'Full-Fledged practice website for Automation Engineers' })).toBeVisible();
-  })
-})
+    await expect(page.locator("#slider-carousel").locator(".active").getByRole('heading', { name: 'Full-Fledged practice website for Automation Engineers' })).toBeVisible();
+  });
+});
