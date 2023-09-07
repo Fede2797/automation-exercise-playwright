@@ -11,6 +11,9 @@ test.beforeEach(async({ page }) => {
 
 test.describe("Tests related with the search of products", () => {
   test("Test Case 20: Search Products and Verify Cart After Login", async({ page }) => {
+    //! Test timeout set to 3 minutes
+    test.setTimeout(3 * 60 * 1000);
+    
     const search = "Green";
     const products: { productName: string }[] = [];
     const user = searchCartLoginData[0];

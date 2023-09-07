@@ -24,17 +24,21 @@ export const handleGoogleAd = async( page ) => {
 export const handleMultipleGoogleAds = async( page ) => {
   if ( await page.url().includes("google_vignette") ){
     for ( let i = 0; i <= 9; i++ ) {
-      if ( await page.frameLocator(`#aswift_${i}`).frameLocator("#ad_iframe").getByText('Close').isVisible({timeout : 5000}) ) {
+      if ( await page.frameLocator(`#aswift_${i}`).frameLocator("#ad_iframe").getByText('Close').isVisible({timeout : 2000}) ) {
         const firstFrame = await page.frameLocator(`#aswift_${i}`);
         await firstFrame.frameLocator("#ad_iframe").getByText('Close').click();
         return ;
       }
     }
     for ( let i = 0; i <= 9; i++ ) {
-      if ( await page.frameLocator(`#aswift_${i}`).locator("#dismiss-button").first().isVisible({timeout : 5000}) ) {
+      if ( await page.frameLocator(`#aswift_${i}`).locator("#dismiss-button").first().isVisible({timeout : 2000}) ) {
         await page.frameLocator(`#aswift_${i}`).locator("#dismiss-button").first().click();
         return ;
       }
+    }
+    if ( await page.locator("#dismiss-button").first().isVisible({timeout : 2000}) ) {
+      await page.locator("#dismiss-button").first().click();
+      return ;
     }
   }
 }

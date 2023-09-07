@@ -8,12 +8,13 @@ test.beforeEach(async({ page }) => {
 
 test.describe("Sign up and Sign in test cases", () => {
   test.describe("Test Case 1: Register User", () => {
-    signUpData.map( user => {
-      test(`Signing up ${user.email}`, async({ page }) => {
+    signUpData.map( (user, index) => {
+      test(`Signing up ${index}`, async({ page }) => {
         //! Test timeout set to 3 minutes
         test.setTimeout(3 * 60 * 1000);
 
         await homepageVisible( page );
+    
         await accessLoginSection( page );
         await newUserSignupVisible( page );
         await fillSignupFields( page, user );
@@ -36,8 +37,8 @@ test.describe("Sign up and Sign in test cases", () => {
   });
 
   test.describe("Test Case 2: Login User with correct email and password", () => {
-    loginData.forEach( user => {
-      test(`Logging in ${user.email}`, async({ page }) => {
+    loginData.map( (user, index) => {
+      test(`Logging in ${index}`, async({ page }) => {
         await homepageVisible( page );
         await accessLoginSection( page );
         await loginAccountVisible( page );
@@ -51,8 +52,8 @@ test.describe("Sign up and Sign in test cases", () => {
     //! Test timeout set to 3 minutes
     test.setTimeout(3 * 60 * 1000);
     
-    incorrectLoginData.forEach( user => {
-      test(`Logging in ${user.email}`, async({ page }) => {
+    incorrectLoginData.map( (user, index) => {
+      test(`Logging in ${index}`, async({ page }) => {
         await homepageVisible( page );
         await accessLoginSection( page );
         await loginAccountVisible( page );
@@ -66,8 +67,8 @@ test.describe("Sign up and Sign in test cases", () => {
     //! Test timeout set to 3 minutes
     test.setTimeout(3 * 60 * 1000);
     
-    loginData.forEach( user => {
-      test(`Logging out ${user.email}`, async({ page }) => {
+    loginData.map( (user, index) => {
+      test(`Logging out ${index}`, async({ page }) => {
         await homepageVisible( page );
         await accessLoginSection( page );
         await loginAccountVisible( page );
@@ -80,8 +81,8 @@ test.describe("Sign up and Sign in test cases", () => {
   });
 
   test.describe("Test Case 5: Register User with existing email", () => {
-    existingUserSignup.forEach( user => {
-      test(`Signing up ${user.email}`, async({ page }) => {
+    existingUserSignup.map( (user, index) => {
+      test(`Signing up ${index}`, async({ page }) => {
         //! Test timeout set to 3 minutes
         test.setTimeout(3 * 60 * 1000);
 
