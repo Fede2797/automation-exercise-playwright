@@ -1,13 +1,15 @@
+<style>h3 {font-size: "2 em"}</style>
+
 # Automation testing exercise
 
 This is a personal project to improve my understanding of Playwright tools. I'll cover how it works and everything I learned during this project.
+
 
 - [Introduction](#introduction-heading)
 - [Demonstration](#second-heading)
 - [Requirements](#third-heading)
 - [Instructions](#forth-heading)
 - [What I learned](#fifth-heading)
-- [License](#sixth-heading)
  
 <a id="introduction-heading"></a>
 # Introduction
@@ -67,9 +69,13 @@ npx playwright test tests/cart.spec.ts
 <a id="fifth-heading"></a>
 # What I learned
 
+### Data Driven Testing
+I decided to try out this method in our authentication testing. Basically, I put together sets of different input data for the sign-up and sign-in test scripts. Then, I created scripts that could use this data and run each test case separately, taking full advantage of Playwright's ability to run tests in parallel. []
+
+### Ad handling
+The ad handling part was quite challenging. This website displays various types of ads in each section, which required me to create a script capable of recognizing which ad appeared at any given moment and taking the necessary action to manage it. []
+
+### Upload files
+
 Esta es una sección importante para destacar lo que aprendiste durante el proyecto. Puedes escribir en detalle sobre los desafíos que enfrentaste, las soluciones que implementaste y cómo mejoraste tus habilidades al usar Playwright. También puedes compartir consejos o trucos que descubriste en el proceso.
 
-<a id="sixth-heading"></a>
-# License
-
-Agrega información sobre la licencia bajo la cual compartes tu proyecto. Esto puede ser importante para que otros usuarios sepan cómo pueden utilizar y distribuir tu código.
