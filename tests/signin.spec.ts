@@ -29,7 +29,7 @@ test.describe("Sign up and Sign in test cases", () => {
         await handleGoogleAd( page );
 
         await loggedInAs( page, user.fullname );
-        await page.getByRole('link', { name: ' Delete Account' }).click();
+        await page.getByRole('link', { name: 'Delete Account' }).click();
         await expect( page.getByText('Account Deleted!') ).toBeVisible();
         await page.getByRole('link', { name: 'Continue' }).click();
       })

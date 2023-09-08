@@ -1,6 +1,6 @@
 # Automation testing exercise
 
-This is a personal project to improve my understanding of Playwright tools. I'll cover how it works and the things I learned during this project.
+This is a personal project to improve my understanding of Playwright tools. I'll cover how it works and everything I learned during this project.
 
 - [Introduction](#introduction-heading)
 - [Demonstration](#second-heading)
@@ -17,8 +17,9 @@ This is a personal project to improve my understanding of Playwright tools. I'll
 
 Based on the excercise of the following website https://automationexercise.com/ I built a test suite to assure its quality and learn about Playwright. 
 
-Inside the repository, you can find all the tests inside the "/tests" folder. They are divided according the sections tested of the website.
+You can find every pre-built test case provided by the web in https://automationexercise.com/test_cases.
 
+Inside the repository, you can find all the tests inside the "/tests" folder. They are divided according the tested sections of the website.
 
 <a id="second-heading"></a>
 # Demonstration

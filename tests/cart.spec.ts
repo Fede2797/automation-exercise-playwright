@@ -8,7 +8,7 @@ test.beforeEach(async({ page }) => {
   await page.goto(URL);
 });
 
-test.describe("Testing Cart functionallity", () => {
+test.describe("Testing Cart", () => {
   test("Test Case 12: Add Products in Cart", async({ page }) => {
     await homepageVisible( page );
     await enterProductsPage( page );
