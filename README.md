@@ -1,5 +1,3 @@
-<style>h3 {font-size: "2 em"}</style>
-
 # Automation testing exercise
 
 This is a personal project to improve my understanding of Playwright tools. I'll cover how it works and everything I learned during this project.
