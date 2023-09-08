@@ -6,11 +6,8 @@ This is a personal project to improve my understanding of Playwright tools. I'll
 - [Demonstration](#second-heading)
 - [Requirements](#third-heading)
 - [Instructions](#forth-heading)
-- [Configuration](#fifth-heading)
-- [Test execution](#sixth-heading)
-- [What I learned](#seventh-heading)
-- [Contribution](#eighth-heading)
-- [License](#nineth-heading)
+- [What I learned](#fifth-heading)
+- [License](#sixth-heading)
  
 <a id="introduction-heading"></a>
 # Introduction
@@ -50,7 +47,7 @@ To do so open your terminal, head down to the project's directory and run:
 npm install
 ```
 
-Then, you can run all tests with simple commands:
+### Then, you can run every test with simple commands:
 
 This instruction runs every test of the project in headless mode
 ```
@@ -68,26 +65,11 @@ npx playwright test tests/cart.spec.ts
 ```
 
 <a id="fifth-heading"></a>
-# Configuration
-
-Si hay alguna configuración específica que deba realizarse antes de ejecutar las pruebas, asegúrate de explicarla en esta sección.
-
-<a id="sixth-heading"></a>
-# Test execution
-
-Describe cómo ejecutar tus pruebas de manera efectiva. Incluye ejemplos de comandos que los usuarios pueden usar.
-
-<a id="seventh-heading"></a>
 # What I learned
 
 Esta es una sección importante para destacar lo que aprendiste durante el proyecto. Puedes escribir en detalle sobre los desafíos que enfrentaste, las soluciones que implementaste y cómo mejoraste tus habilidades al usar Playwright. También puedes compartir consejos o trucos que descubriste en el proceso.
 
-<a id="eighth-heading"></a>
-# Contribution
-
-Si deseas permitir que otros contribuyan a tu proyecto, proporciona instrucciones sobre cómo pueden hacerlo, incluyendo cómo informar problemas o enviar solicitudes de extracción.
-
-<a id="nineth-heading"></a>
+<a id="sixth-heading"></a>
 # License
 
 Agrega información sobre la licencia bajo la cual compartes tu proyecto. Esto puede ser importante para que otros usuarios sepan cómo pueden utilizar y distribuir tu código.
