@@ -28,7 +28,12 @@ Incluye capturas de pantalla o gifs animados que muestren ejemplos de tus prueba
 
 To execute the tests you need to have [Node.js](https://nodejs.org/es) installed on your machine.
 
-Once you have Node.js installed, clone or download this repository and you're ready to go.
+Then install Playwright
+```
+npx playwright install
+```
+
+Once you have Node.js and Playwright installed, clone or download this repository and you're ready to go.
 
 ```
 git clone https://github.com/Fede2797/automation-exercise-playwright.git 
