@@ -73,12 +73,24 @@ npx playwright test tests/cart.spec.ts
 # What I learned
 
 ### Data Driven Testing
-I decided to try out this method in our authentication testing. Basically, I put together sets of different input data for the sign-up and sign-in test scripts. Then, I created scripts that could use this data and run each test case separately, taking full advantage of Playwright's ability to run tests in parallel. []
+I decided to try out this method in our authentication testing. Basically, I put together sets of different input data for the sign-up and sign-in test scripts. Then, I created scripts that could use this data and run each test case separately, taking full advantage of Playwright's ability to run tests in parallel. 
+![Code extract - Data Driven Test](img/data-driven.png)
 
 ### Ad handling
-The ad handling part was quite challenging. This website displays various types of ads in each section, which required me to create a script capable of recognizing which ad appeared at any given moment and taking the necessary action to manage it. []
+The ad handling part was quite challenging. This website displays various types of ads in each section, which required me to create a script capable of recognizing which ad appeared at any given moment and taking the necessary action to manage it. 
+![Code extract - Ad Handling](img/ad-handling.png)
+Usually, websites use iframes to embed HTML documents within the current site to display ads, and Playwright has this really useful tool to access the view from iframes inside the website "frameLocator".
 
 ### Upload files
+Playwright has a very straight forward way to upload images. With just one line of code I was able to upload an image.
+![Code extract - Upload files](img/upload-files.png)
+
+### HTML Reports and Trace Viewer
+A la hora de detectar los errores (tanto al desarrollar los tests como al ejecutar las pruebas) el uso de los reportes HTML nos brinda una ayuda esencial. 
+En caso de fallar alguno de los tests, se registra el motivo del fallo y la línea de código que no pudo ser ejecutada o la condición que no fue cumplida.
+![Report failing](img/report-fail.png)
+Otra herramienta muy útil es el Trace Viewer. Esta herramienta nos permite explorar los traces generados por Playwright después de ejecutar el script. Es esencialmente útil para detectar si es que existe algún pop-up, ad o cualquier elemento que bloquee el acceso al elemento que queremos localizar.
+![Trace report failing](img/report-fail2.png)
 
 Esta es una sección importante para destacar lo que aprendiste durante el proyecto. Puedes escribir en detalle sobre los desafíos que enfrentaste, las soluciones que implementaste y cómo mejoraste tus habilidades al usar Playwright. También puedes compartir consejos o trucos que descubriste en el proceso.
 
