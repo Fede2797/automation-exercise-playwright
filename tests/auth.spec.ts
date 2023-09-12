@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { existingUserSignup, incorrectLoginData, loginData, signUpData } from '../data/data';
-import { URL, accessLoginSection, clickSignupButton, fillExtraSignupFields, fillSignupFields, handleGoogleAd, homepageVisible, loggedInAs, loginAccountVisible, loginUser, newUserSignupVisible, validateLoginURL } from './helpers/helper';
+import { URL, accessLoginSection, clickSignupButton, fillExtraSignupFields, fillSignupFields, handleGoogleAd, handleMultipleGoogleAds, homepageVisible, loggedInAs, loginAccountVisible, loginUser, newUserSignupVisible, validateLoginURL } from './helpers/helper';
 
 test.beforeEach(async({ page }) => {
   await page.goto(URL);
@@ -26,7 +26,7 @@ test.describe("Sign up and Sign in test cases", () => {
         await page.getByRole('link', { name: 'Continue' }).click();
 
         //! Handle google ad
-        await handleGoogleAd( page );
+        await handleMultipleGoogleAds( page );
 
         await loggedInAs( page, user.fullname );
         await page.getByRole('link', { name: 'Delete Account' }).click();

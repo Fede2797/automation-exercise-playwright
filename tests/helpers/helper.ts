@@ -40,6 +40,10 @@ export const handleMultipleGoogleAds = async( page ) => {
       await page.locator("#dismiss-button").first().click();
       return ;
     }
+    if ( await page.getByLabel("Close ad").isVisible({timeout : 2000}) ) {
+      await page.getByLabel("Close ad").click();
+      return ;
+    }
   }
 }
 
