@@ -29,7 +29,7 @@ test.describe("Contact Us section test cases", () => {
       
       await expect(page.locator('#contact-page').getByText('Success! Your details have been submitted successfully.')).toBeVisible({ timeout: 15000 });
 
-      await page.getByRole('link', { name: 'Home' }).click();
+      await page.locator('#header').getByRole('link', { name: 'Home' }).click();
       await handleMultipleGoogleAds( page );
       await validateHomepageURL( page );
     });

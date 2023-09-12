@@ -20,6 +20,7 @@ Inside the repository, you can find all the tests inside the "/tests" folder. Th
 
 <a id="second-heading"></a>
 # Demonstration
+![Execution gif](img/execution-gif.gif)
 
 Incluye capturas de pantalla o gifs animados que muestren ejemplos de tus pruebas en acción. Puedes utilizar imágenes o videos para hacerlo más dinámico e interesante. También podrías proporcionar enlaces a un sitio web o plataforma de alojamiento de videos donde los usuarios puedan ver tus pruebas en funcionamiento.
 
@@ -38,8 +39,6 @@ Once you have Node.js and Playwright installed, clone or download this repositor
 ```
 git clone https://github.com/Fede2797/automation-exercise-playwright.git 
 ```
-
-Enumera los requisitos que los usuarios deben cumplir para ejecutar las pruebas en su entorno local. Esto podría incluir la instalación de Playwright y otras dependencias necesarias.
 
 <a id="forth-heading"></a>
 # Instructions
@@ -98,6 +97,3 @@ En caso de fallar alguno de los tests, se registra el motivo del fallo y la lín
 Otra herramienta muy útil es el Trace Viewer. Esta herramienta nos permite explorar los traces generados por Playwright después de ejecutar el script. Es esencialmente útil para detectar si es que existe algún pop-up, ad o cualquier elemento que bloquee el acceso al elemento que queremos localizar.
 
 ![Trace report failing](img/report-fail2.png)
-
-Esta es una sección importante para destacar lo que aprendiste durante el proyecto. Puedes escribir en detalle sobre los desafíos que enfrentaste, las soluciones que implementaste y cómo mejoraste tus habilidades al usar Playwright. También puedes compartir consejos o trucos que descubriste en el proceso.
-

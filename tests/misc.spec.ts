@@ -55,6 +55,7 @@ test.describe("Download invoice", () => {
     await page.getByRole('link', { name: 'Continue' }).click();
     await loggedInAs( page, user.fullname );
     
+    await handleMultipleGoogleAds( page );
     await goToCartSection( page );
     await proceedToCheckout( page );
     await validateDeliveryAddress( page, user );

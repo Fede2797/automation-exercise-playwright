@@ -46,8 +46,12 @@ test.describe("Placing an order end to end tests", () => {
     await placeDescription( page, "This is a sample description of an order" );
 
     await placeOrder( page );
+    
+    if ( await page.url().includes("google_vignette") ){ 
+      await handleMultipleGoogleAds( page );
+      await placeOrder( page );
+    }
 
-    await handleMultipleGoogleAds( page );
     await fillCreditCardData({ page, user, creditCard });
 
     await orderConfirmed( page );

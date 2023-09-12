@@ -1,4 +1,5 @@
 import { expect } from "@playwright/test";
+import { handleMultipleGoogleAds } from "./helper";
 
 export const addProductToCart = async( page, productNumber ) => {
   await page.locator(".single-products").nth(productNumber).hover();
