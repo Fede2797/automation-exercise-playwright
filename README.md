@@ -21,8 +21,7 @@ Inside the repository, you can find all the tests inside the "/tests" folder. Th
 <a id="second-heading"></a>
 # Demonstration
 ![Execution gif](img/execution-gif.gif)
-
-![Alt text](img/total-execution-results.png)
+![Total execution results](img/total-execution-results.png)
 
 Incluye capturas de pantalla o gifs animados que muestren ejemplos de tus pruebas en acción. Puedes utilizar imágenes o videos para hacerlo más dinámico e interesante. También podrías proporcionar enlaces a un sitio web o plataforma de alojamiento de videos donde los usuarios puedan ver tus pruebas en funcionamiento.
 
