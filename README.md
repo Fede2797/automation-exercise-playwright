@@ -20,8 +20,16 @@ Inside the repository, you can find all the tests inside the "/tests" folder. Th
 
 <a id="second-heading"></a>
 # Demonstration
+
+Here you can see how a subset of tests is being executed headless. It's set to handle up to 4 workers, so as soon as any of the workers is freed it continues with the execution of the following test.
 ![Execution gif](img/execution-gif.gif)
+
+This is a gif of the execution of a headed end to end test. What you are seeing is every move Playwright does on real time.
+![Headed execution gif](img/headed-execution.gif)
+
+And here is shown the results of the execution of every single test in the project. Every test is set to run on chromium and firefox.
 ![Total execution results](img/total-execution-results.png)
+
 
 Incluye capturas de pantalla o gifs animados que muestren ejemplos de tus pruebas en acción. Puedes utilizar imágenes o videos para hacerlo más dinámico e interesante. También podrías proporcionar enlaces a un sitio web o plataforma de alojamiento de videos donde los usuarios puedan ver tus pruebas en funcionamiento.
 
