@@ -21,10 +21,12 @@ Inside the repository, you can find all the tests inside the "/tests" folder. Th
 <a id="second-heading"></a>
 # Demonstration
 
-Here you can see how a subset of tests is being executed headless. It's set to handle up to 4 workers, so as soon as any of the workers is freed it continues with the execution of the following test.
+In this section, you can see demonstrations of our automated tests in action.
+
+This is a gif of a subset of tests is being executed headless. It's set to handle up to 4 workers, so as soon as any of the workers is freed it continues with the execution of the following test.
 ![Execution gif](img/execution-gif.gif)
 
-This is a gif of the execution of a headed end to end test. What you are seeing is every move Playwright does on real time.
+Here you can see the execution of a headed end to end test. What you are seeing is every move Playwright does on real time.
 ![Headed execution gif](img/headed-execution.gif)
 
 And here is shown the results of the execution of every single test in the project. Every test is set to run on chromium and firefox.
@@ -36,9 +38,9 @@ Incluye capturas de pantalla o gifs animados que muestren ejemplos de tus prueba
 <a id="third-heading"></a>
 # Requirements
 
-To execute the tests you need to have [Node.js](https://nodejs.org/es) installed on your machine.
+To execute the tests you need to have [Node.js](https://nodejs.org/es) (v18.16.1 is currently working) installed on your machine.
 
-Then install Playwright
+Then install Playwright (v1.37.1 is currently working)
 ```
 npx playwright install
 ```
@@ -81,6 +83,8 @@ npx playwright test tests/cart.spec.ts
 # What I learned
 
 ### Data Driven Testing
+>Data-driven testing (DDT) is data that is external to your functional tests, and is loaded and used to extend your automated test cases. You can take the same test case and run it with as many different inputs as you like, thus getting better coverage from a single test.
+
 I decided to try out this method in our authentication testing. Basically, I put together sets of different input data for the sign-up and sign-in test scripts. Then, I created scripts that could use this data and run each test case separately, taking full advantage of Playwright's ability to run tests in parallel. 
 
 ![Code extract - Data Driven Test](img/data-driven.png)
