@@ -33,8 +33,6 @@ And here is shown the results of the execution of every single test in the proje
 ![Total execution results](img/total-execution-results.png)
 
 
-Incluye capturas de pantalla o gifs animados que muestren ejemplos de tus pruebas en acción. Puedes utilizar imágenes o videos para hacerlo más dinámico e interesante. También podrías proporcionar enlaces a un sitio web o plataforma de alojamiento de videos donde los usuarios puedan ver tus pruebas en funcionamiento.
-
 <a id="third-heading"></a>
 # Requirements
 
