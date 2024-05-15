@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { existingUserSignup, incorrectLoginData, loginData, signUpData } from '../data/data';
-import { URL, accessLoginSection, clickSignupButton, fillExtraSignupFields, fillSignupFields, handleGoogleAd, handleMultipleGoogleAds, homepageVisible, loggedInAs, loginAccountVisible, loginUser, newUserSignupVisible, validateLoginURL } from './helpers/helper';
+import { URL, accessLoginSection, clickSignupButton, fillExtraSignupFields, fillSignupFields, handleMultipleGoogleAds, homepageVisible, loggedInAs, loginAccountVisible, loginUser, newUserSignupVisible, validateLoginURL } from './helpers/helper';
 
 test.beforeEach(async({ page }) => {
   await page.goto(URL);

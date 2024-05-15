@@ -1,8 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { URL, clickSignupButton, createRandomUser, deleteAccount, fillExtraSignupFields, fillSignupFields, getRandomInt, handleMultipleGoogleAds, homepageVisible, loggedInAs, scrollToBottom, scrollToTop } from "./helpers/helper";
-import { addProductToCart, continueShopping, fillCreditCardData, goToCartSection, orderConfirmed, placeDescription, placeOrder, proceedToCheckout, validateBillingAddress, validateDeliveryAddress, validateProductOnReviewOrder } from "./helpers/placeorder-helper";
-import { cartVisible } from "./helpers/cart-helper";
-import { creaditCardData, signUpData } from "../data/data";
+import { URL, homepageVisible, scrollToBottom, scrollToTop } from "./helpers/helper";
 
 test.beforeEach( async({ page }) => {
   await page.goto(URL);
